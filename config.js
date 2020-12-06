@@ -25,7 +25,8 @@ const {
     USER_MACHINE_NAME,
     PRIVATE_VAPID_KEY,
     PUBLIC_VAPID_KEY,
-    SQL_DIALECT
+    SQL_DIALECT,
+    INSTANCE_NAME
 } = process.env;
 
 const sqlEncrypt = process.env.SQL_ENCRYPT === "true";
@@ -61,8 +62,10 @@ module.exports = {
         dialect:SQL_DIALECT,
         dialectOptions:{
         options: {
+            instanceName: INSTANCE_NAME,
             encrypt:false,
-            enableArithAbort:false
+            enableArithAbort:false,
+            validateBulkLoadParameters: false
             }
         }
         // pool: {
