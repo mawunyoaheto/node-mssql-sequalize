@@ -26,7 +26,8 @@ const {
     PRIVATE_VAPID_KEY,
     PUBLIC_VAPID_KEY,
     SQL_DIALECT,
-    INSTANCE_NAME
+    INSTANCE_NAME,
+    DB_FORCE_RESTART
 } = process.env;
 
 const sqlEncrypt = process.env.SQL_ENCRYPT === "true";
@@ -52,6 +53,7 @@ module.exports = {
     cookiePwd: COOKIE_ENCRYPT_PWD,
     privVapidKey: PRIVATE_VAPID_KEY,
     pubVapidKey: PUBLIC_VAPID_KEY,
+    dbForceRestart: DB_FORCE_RESTART,
     db:{
         database: SQL_DATABASE,
         user: SQL_USER,
@@ -60,6 +62,12 @@ module.exports = {
     sql: {
         host: SQL_HOST,
         dialect:SQL_DIALECT,
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+          },
         dialectOptions:{
         options: {
             instanceName: INSTANCE_NAME,
@@ -68,23 +76,5 @@ module.exports = {
             validateBulkLoadParameters: false
             }
         }
-        // pool: {
-        //         min: 0,
-        //         max: 10,
-        //         idleTimeoutMillis: 3000
-        //      }   
-        // "dialectOptions": {
-        //     encrypt:true,
-        //     options: { "requestTimeout": 900000 }
-        //   }
-     
-        
-        // option: {
-        //     acquireTimeoutMillis: 3000,
-        //     // idleTimeoutMillis: 300000,
-        //     // encrypt: sqlEncrypt,
-        //     connectionTimeout: 800000,
-        //     requestTimeout: 1000000
-        // }
     }
 };
