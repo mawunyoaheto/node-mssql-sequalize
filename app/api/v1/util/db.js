@@ -1,24 +1,50 @@
 //const Sequelize = require('sequelize');
-const config = require('../../../config');
+const config = require('../../../../config');
 const fs = require("fs");
 const { Sequelize, DataTypes } = require("sequelize");
 
-const sequelConnect = new Sequelize(config.db.database, config.db.user, config.db.password,config.sql);
+var sequelConnect;
 
-sequelConnect
-  .authenticate()
-  .then(() => {
-    console.log('Connection to Database established successfully.');
-    //return pool;
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+switch ((config.appDatabase).toLocaleUpperCase()) {
+  case "MYSQL":
+    sequelConnect = new Sequelize(config.mysql_db.database, config.mysql_db.user, config.mysql_db.password,config.mysqlOptions);
 
-  module.exports={
-     sequelConnect,
-     Sequelize
-  }
+    sequelConnect
+      .authenticate()
+      .then(() => {
+        console.log('Connection to MYSQL Database established successfully.');
+        //return pool;
+      })
+      .catch(err => {
+        console.error('Unable to connect to MYSQL database:', err);
+      });
+    
+    break;
+
+  case "MSSQL":
+    sequelConnect = new Sequelize(config.mssql_db.database, config.mssql_db.user, config.mssql_db.password, config.mssqlOptions);
+
+    sequelConnect
+      .authenticate()
+      .then(() => {
+        console.log('Connection to MSSQL Database established successfully.');
+        //return pool;
+      })
+      .catch(err => {
+        console.error('Unable to connect to MSSQL database:', err);
+      });
+
+    break;
+  default:
+    console.log('Wrong Database configuration ');
+    break;
+}
+
+
+module.exports = {
+  sequelConnect,
+  Sequelize
+}
 
 
 // let DB = {};

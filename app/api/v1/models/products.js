@@ -1,7 +1,7 @@
 const {sequlelize, Sequelize} = require('../util/db');
 
 module.exports = (sequelize, DataTypes) => {
-    const TransactionStatuses = sequelize.define('transactionstatuses', {
+    const Products = sequelize.define('products', {
         id: {
             autoIncrement: true,
             primaryKey: true,
@@ -67,5 +67,5 @@ module.exports = (sequelize, DataTypes) => {
     
     });
  
-    return TransactionStatuses;
+    return Products;
  }

@@ -1,1 +1,0 @@
-const sequlelize = require('../util/db');

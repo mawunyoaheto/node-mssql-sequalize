@@ -2,7 +2,7 @@ const users = require('./users');
 const { sequelConnect, Sequelize, DataTypes } = require('../util/db');
 const path = require('path');
 const fs = require('fs');
-const config = require('../../../config');
+const config = require('../../../../config');
 
 const sequelize = sequelConnect;
 
@@ -46,7 +46,7 @@ const sequelizeOptions = { logging: console.log, };
 
 // Removes all tables and recreates them (only available if env is not in production)
 if (config.dbForceRestart === 'true' && process.env.ENV !== 'production') {
-    sequelizeOptions.force = true;
+    sequelizeOptions.force = false;
 }
 
 sequelize.sync(sequelizeOptions)

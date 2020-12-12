@@ -82,11 +82,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         modifier_userid: {
             type: DataTypes.BIGINT,
-            allowNull: false
+            allowNull: true
         },
         usermachinename: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         usermachineip: {
             type: DataTypes.STRING,
