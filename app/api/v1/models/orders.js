@@ -74,9 +74,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BIGINT,
             allowNull: false
         },
+        create_time: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
+        },
         modifier_userid: {
             type: DataTypes.BIGINT,
             allowNull: false
+        },
+        modified_date: {
+            type: DataTypes.DATE,
+            allowNull: true,
         },
         usermachinename: {
             type: DataTypes.STRING,
@@ -85,6 +94,11 @@ module.exports = (sequelize, DataTypes) => {
         usermachineip: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        servertime: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
         }
     
     });

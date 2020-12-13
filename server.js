@@ -133,6 +133,8 @@ require('./app/api/v1/routes/itembaseunits')(app);
 require('./app/api/v1/routes/product_categories')(app);
 require('./app/api/v1/routes/products')(app);
 require('./app/api/v1/routes/suppliers')(app);
+require('./app/api/v1/routes/user_permissions')(app);
+require('./app/api/v1/routes/role_permissions')(app);
 
 
 

@@ -123,6 +123,10 @@ module.exports= app =>{
  *                       type: integer
  *                     statusID:
  *                       type: integer
+ *                     archived:
+ *                       type: string
+ *                     archiveTime:
+ *                       type: string
  *                     createTime:
  *                       type: string
  *     responses:

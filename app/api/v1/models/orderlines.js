@@ -1,4 +1,4 @@
-const {sequlelize, Sequelize} = require('../util/db');
+const {sequelize, Sequelize} = require('../util/db');
 
 module.exports = (sequelize, DataTypes) => {
     const Orderlines = sequelize.define('orderlines', {
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         stocklevel: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         reorderlevel: {
             type: DataTypes.INTEGER,
@@ -80,8 +80,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BIGINT,
             allowNull: false
         },
+        archive_time: {
+            type: DataTypes.DATE,
+            allowNull: true
+        },
         modifier_userid: {
             type: DataTypes.BIGINT,
+            allowNull: true
+        },
+        modified_date: {
+            type: DataTypes.DATE,
             allowNull: true
         },
         usermachinename: {
@@ -91,6 +99,11 @@ module.exports = (sequelize, DataTypes) => {
         usermachineip: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        servertime: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
         }
     
     });
