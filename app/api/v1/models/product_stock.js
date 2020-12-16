@@ -1,34 +1,18 @@
 const {sequlelize, Sequelize} = require('../util/db');
 
 module.exports = (sequelize, DataTypes) => {
-    const OrderReceivalLines = sequelize.define('orderreceivallines', {
+    const ProductStock = sequelize.define('productstock', {
         id: {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.BIGINT
         },
-        orderlineid: {
-            type: DataTypes.BIGINT,
-            allowNull: false
-        },
-        receivalid: {
-            type: DataTypes.BIGINT,
-            allowNull: false
-        },
         productid: {
             type: DataTypes.BIGINT,
             allowNull: false
         },
-        itemunitid: {
+        stocklevel: {
             type: DataTypes.BIGINT,
-            allowNull: false
-        },
-        qtyreceived: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        unitcost: {
-            type: DataTypes.DECIMAL(20, 4),
             allowNull: false
         },
         batchno: {
@@ -38,39 +22,75 @@ module.exports = (sequelize, DataTypes) => {
         expirydate: {
             type: DataTypes.DATE,
             allowNull: true
-        },
-        linetotalcost: {
-            type: DataTypes.DECIMAL(20, 4),
+          },
+        unitcost: {
+            type: DataTypes.DECIMAL(20,4),
+            allowNull: true
+          },
+        outletid: {
+            type: DataTypes.BIGINT,
             allowNull: false
         },
-        remarks: {
-            type: DataTypes.STRING,
-            allowNull: true
+        baseunit_id: {
+            type: DataTypes.BIGINT,
+            allowNull: false
         },
-        outletid: {
+        actualstocklevel: {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        returnstatusid: {
+        reorderlevel: {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        returneeid: {
+        eoq: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        averageconsumption: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        leadtime: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        minstocklevel: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        maxstocklevel: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        transactionid: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stageid: {
+            type: DataTypes.BIGINT,
+            allowNull: false
+        },
+        statusid: {
+            type: DataTypes.BIGINT,
+            allowNull: false
+        },
+        issuerid: {
+            type: DataTypes.BIGINT,
+            allowNull: false
+        },
+        receiverid: {
+            type: DataTypes.BIGINT,
+            allowNull: true
+        },
+        modifier_userid: {
             type: DataTypes.BIGINT,
             allowNull: true
         },
         archived: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        create_userid: {
-            type: DataTypes.BIGINT,
-            allowNull: false
-        },
-        modifier_userid: {
-            type: DataTypes.BIGINT,
-            allowNull: true
+            allowNull: true,
+            defaultValue: true
         },
         usermachinename: {
             type: DataTypes.STRING,
@@ -88,5 +108,5 @@ module.exports = (sequelize, DataTypes) => {
     
     });
  
-    return OrderReceivalLines;
+    return ProductStock;
  }

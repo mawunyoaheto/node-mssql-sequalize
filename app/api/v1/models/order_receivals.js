@@ -65,6 +65,11 @@ module.exports = (sequelize, DataTypes) => {
         usermachineip: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        servertime: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
         }
     
     });

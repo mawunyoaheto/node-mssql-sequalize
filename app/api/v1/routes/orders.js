@@ -2,6 +2,7 @@
 module.exports= app =>{
 
     const orders = require('../controller/orders');
+    const ReceiveOrder = require('../controller/receive_order')
     var router = require('express').Router();
     
 /**
@@ -176,6 +177,68 @@ module.exports= app =>{
      *         description: Unexpected error
      */
        // router.put('/:id',currencies.update);
+
+/**
+ * @swagger
+ *   /orders/receiveorder:
+ *     post:
+ *       security:
+ *         - bearerAuth: []
+ *       summary: Receive an order
+ *       tags: [Purchase Orders]
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 orderID:
+ *                   type: integer
+ *                 receivedDate:
+ *                   type: string
+ *                 wayBillNo:
+ *                   type: string
+ *                 sraNo:
+ *                   type: string
+ *                 receivalNo:
+ *                   type: string
+ *                 remarks:
+ *                   type: string
+ *                 outletID:
+ *                   type: integer
+ *                 details:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       orderlineid:
+ *                         type: integer
+ *                       productID:
+ *                         type: integer
+ *                       unitCost:
+ *                         type: integer
+ *                       qty:
+ *                         type: integer
+ *                       unitID:
+ *                         type: integer
+ *                       batchNo:
+ *                         type: string
+ *                       expiryDate:
+ *                         type: string
+ *                       outletID:
+ *                         type: integer
+ *                       baseItemID:
+ *                         type: integer
+ *       responses:
+ *         '201':
+ *           description: created
+ *         '400':
+ *           description: Unexpected error
+ */
+router.post('/receiveorder',ReceiveOrder.receiveOrder);
+
+
     
     app.use('/api/v1/orders', router);
     

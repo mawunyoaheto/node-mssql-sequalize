@@ -3,7 +3,7 @@ const helper = require('../util/helper');
 const Response = require('../util/response');
 const respBody = require('../util/response');
 const { Console } = require('winston/lib/winston/transports');
-const PendingSummary = require('./approval_summary');
+const PendingSummary = require('./pending_order_approval_summary');
 const PendingDetails = require('./pending_order_approval_details');
 
 var pendingApprovalResp = {};

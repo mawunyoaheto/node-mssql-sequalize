@@ -9,18 +9,7 @@ const Response = require('../util/response');
 const respBody = require('../util/response');
 const { Console } = require('winston/lib/winston/transports');
 
-const userid = `${dbConfig.app_user}`;
-const userMachineName = `${dbConfig.userMachine}`;
-const userMachineIP = `${dbConfig.userIP}`;
-
-
-
-var pendingApprovalResp = {};
-
  exports.ordersReceivalSummary = async (id) =>{
-
-    const queryString = `select * from orderapprovals WHERE id='${id}'`
-    const pool = await poolPromise;
 
     try {
 

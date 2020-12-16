@@ -3,23 +3,18 @@ var dbConfig = require('../../../../config');
 const OrderLines = db.orderlines;
 const Op = db.Sequelize.Op;
 
-// const helper = require('../util/helper');
-// const Response = require('../util/response');
-// const respBody = require('../util/response');
 const { Console } = require('winston/lib/winston/transports');
 const PendingSummary = require('./pending_order_approval_summary');
 
 
-exports.findPendingOrderApprovalDetails = async (orderID) => {
+exports.findPendingOrderApprovalDetails = async (orderID,stageID, statusID) => {
 
     try {
-  
-     // const {count,rows} = await Itembase.findAndCountAll({ where: { baseunit: description } });
       const rows = await OrderLines.findAndCountAll({where:{
         [Op.and]:[
             {archived:'No'},
-            {stageid: 11},
-            {statusid:[1,2]}
+            {stageid: stageID},
+            {statusid:statusID}
         ]
     } });
 
@@ -28,7 +23,7 @@ exports.findPendingOrderApprovalDetails = async (orderID) => {
         return null
   
       } else {
-       // return {count,rows};
+
         return rows;
       }
     } catch (error) {
